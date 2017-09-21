@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1" />
+<title>Controle de contas</title>
+<script type="text/javascript">
+	function habilitarInput(id){
+		var pfPj = document.getElementsByName("pfoupj")[id].value;
+		
+		if(id == 0){
+			document.getElementById("pf").style.display = "block";			
+			document.getElementById("pj").style.display = "none";
+		}else{
+			document.getElementById("pj").style.display = "block";
+			document.getElementById("pf").style.display = "none";
+		}
+		document.getElementById("bottomConfirm").style.display = "block";
+	}
+</script>
+</head>
+<body>
+	<h1>Sistema para controle de contas</h1>
+	<div>
+		<form action="/cadastrar/cadastropfoupj">
+			<input type="radio" name="pfoupj" value="pessoafisica" onclick="habilitarInput(0)"> <label>Pessoa Física</label><br>
+  			<input type="radio" name="pfoupj" value="pessoajuridica" onclick="habilitarInput(1)"><label>Pessoa Jurídica</label><br>
+  			<div id="pf" style="display:none">
+  				<input type="text" name="nomeCompleto" required required min="3" maxlength="50"/>
+  				<input type="text" name="cpf" required required min="11"/>
+  				<input type="date" name="dataNascimento" data-date-inline-picker="true" required/>
+  			</div>
+  			<div id="pj" style="display:none">
+  				<input type="text" name="razaoSocial" required min="3" maxlength="50"/>  				
+  				<input type="text" name="nomeFantasia" required min="3" maxlength="50"/>
+  				<input type="text" name="cnpj" required min="14"/>
+  			</div>
+			<div id="bottomConfirm" style="display:none">
+				<input type="submit" value="Cadastrar">
+			</div>
+			
+		</form>
+	</div>
+</body>
+</html>
